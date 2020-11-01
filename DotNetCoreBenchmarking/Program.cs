@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Running;
 using DotNetCoreBenchmarking.Benchmarks;
+using DotNetCoreBenchmarking.StopwatchTesting;
 using System;
 
 namespace DotNetCoreBenchmarking
@@ -8,7 +9,15 @@ namespace DotNetCoreBenchmarking
     {
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<CollectionsBenchmarks>();
+            //SimpleStopwatch.CountLoopTest();            
+
+            //StopwatchJITImpact.RunCountTest();
+            //StopwatchJITImpact.RunEvenTest();
+
+            GCImpact.RunCountTest();
+
+            //BenchmarkRunner.Run<CollectionsBenchmarks>();            
+            //BenchmarkRunner.Run<CountBenchmarks>();       
         }
     }
 }
