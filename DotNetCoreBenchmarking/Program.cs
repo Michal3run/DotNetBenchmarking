@@ -14,7 +14,8 @@ namespace DotNetCoreBenchmarking
             //StopwatchJITImpact.RunCountTest();
             //StopwatchJITImpact.RunEvenTest();
 
-            GCImpact.RunCountTest();
+            //GCImpact.RunCountTestWithoutGCCollect();
+            GCImpact.RunCountTestWithGCCollect();
 
             //BenchmarkRunner.Run<CollectionsBenchmarks>();            
             //BenchmarkRunner.Run<CountBenchmarks>();       

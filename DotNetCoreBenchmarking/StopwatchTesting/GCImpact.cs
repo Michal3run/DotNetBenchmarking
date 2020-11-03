@@ -1,40 +1,56 @@
-﻿using Iced.Intel;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 
 namespace DotNetCoreBenchmarking.StopwatchTesting
 {
     public static class GCImpact
     {
-        public static void RunCountTest()
+        private static int _testLaunchCount = 100;
+
+        public static void RunCountTestWithoutGCCollect()
         {
-            for (int i = 0; i <= 100; i++)
-            {
-                var ticks = RunActionAndGetElapsedTicks(GetNumbersSum);
-                if (i == 0)
-                {
-                    continue;
-                }
-
-                Console.WriteLine($"ElapsedTicks: {ticks}");
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-            }
-
-            long RunActionAndGetElapsedTicks(Func<int> sumFunc)
-            {
-                var stopwatch = Stopwatch.StartNew();
-                var sum = sumFunc();
-                return stopwatch.ElapsedTicks;                
-            }
+            RunCountTest(forceGC: false);
         }
 
-        private static int GetNumbersSum()
+        public static void RunCountTestWithGCCollect()
         {
-            var numbers = Enumerable.Range(0, 1000).ToList();
-            return numbers.Sum(n => n);
+            RunCountTest(forceGC: true);
+        }
+
+        private static void RunCountTest(bool forceGC)
+        {
+            var ticksList = new List<long>(_testLaunchCount);
+
+            for (int i = 0; i < _testLaunchCount; i++)
+            {
+                if (forceGC)
+                {
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                }
+
+                var (_, elapsedTicks) = GetCountAndElapsedTicks();
+                Console.WriteLine($"ElapsedTicks: {elapsedTicks}");
+                if (i > 1)
+                {
+                    ticksList.Add(elapsedTicks);
+                }
+            }
+
+            Console.WriteLine($"ElapsedTicks with{(forceGC ? "" : "out")} GC.Collect(). " +
+                $"Avg: {Math.Round(ticksList.Average(), 1)}");                       
+        }
+
+        private static (int count, long elapsedTicks) GetCountAndElapsedTicks()
+        {
+            var stopwatch = Stopwatch.StartNew();
+            var numberArrays = Enumerable.Range(0, 10).ToArray();
+
+            var count = numberArrays.Count();
+
+            return (count, stopwatch.ElapsedTicks);
         }
     }
 }
