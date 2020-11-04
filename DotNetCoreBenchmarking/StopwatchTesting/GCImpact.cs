@@ -9,17 +9,17 @@ namespace DotNetCoreBenchmarking.StopwatchTesting
     {
         private static int _testLaunchCount = 100;
 
-        public static void RunCountTestWithoutGCCollect()
+        public static void RunEvenNumbersCountTest()
         {
-            RunCountTest(forceGC: false);
+            RunEvenNumbersCountTest(forceGC: false);
         }
 
-        public static void RunCountTestWithGCCollect()
+        public static void RunEvenNumbersCountTestWithGCCollect()
         {
-            RunCountTest(forceGC: true);
+            RunEvenNumbersCountTest(forceGC: true);
         }
 
-        private static void RunCountTest(bool forceGC)
+        private static void RunEvenNumbersCountTest(bool forceGC)
         {
             var ticksList = new List<long>(_testLaunchCount);
 
@@ -31,7 +31,12 @@ namespace DotNetCoreBenchmarking.StopwatchTesting
                     GC.WaitForPendingFinalizers();
                 }
 
-                var (_, elapsedTicks) = GetCountAndElapsedTicks();
+                var stopwatch = Stopwatch.StartNew();
+
+                var evenNumberCount = GetEvenNumbersCount();
+
+                var elapsedTicks = stopwatch.ElapsedTicks;
+
                 Console.WriteLine($"ElapsedTicks: {elapsedTicks}");
                 if (i > 1)
                 {
@@ -43,14 +48,27 @@ namespace DotNetCoreBenchmarking.StopwatchTesting
                 $"Avg: {Math.Round(ticksList.Average(), 1)}");                       
         }
 
-        private static (int count, long elapsedTicks) GetCountAndElapsedTicks()
+        private static long GetEvenNumbersCount()
+        {            
+            var numbers = Enumerable.Range(0, 10000).Select(GetNumber).ToArray();
+            var evenNumbers = numbers.Where(n => n.IsEven).ToArray();
+            var evenNumbersCount = evenNumbers.Length;
+
+            return evenNumbersCount;
+
+            Number GetNumber(int i) => new Number(i);
+        }
+
+        private class Number
         {
-            var stopwatch = Stopwatch.StartNew();
-            var numberArrays = Enumerable.Range(0, 10).ToArray();
+            private readonly int _number;
 
-            var count = numberArrays.Count();
+            public Number(int number)
+            {
+                _number = number;
+            }
 
-            return (count, stopwatch.ElapsedTicks);
+            public bool IsEven => _number % 2 == 0;
         }
     }
 }
