@@ -6,9 +6,14 @@ using System.Linq;
 
 namespace DotNetCoreBenchmarking.Benchmarks
 {
-    [MemoryDiagnoser]
-    public class CollectionsBenchmarks
+    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
+    [MemoryDiagnoser]    
+    [RankColumn]
+    public class MultipleContainsBenchmarks
     {
+        [Params(1, 100, 10000)]
+        public int _collectionSize;  
+
         [Benchmark(Baseline = true)]
         public void ListBenchmark()
         {
@@ -67,6 +72,6 @@ namespace DotNetCoreBenchmarking.Benchmarks
             }
         }
 
-        private IEnumerable<int> GetNumbers(int count = 1000) => Enumerable.Range(0, count);
+        private IEnumerable<int> GetNumbers() => Enumerable.Range(0, _collectionSize);
     }        
 }

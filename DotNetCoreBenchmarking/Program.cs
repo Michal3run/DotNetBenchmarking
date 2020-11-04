@@ -15,10 +15,14 @@ namespace DotNetCoreBenchmarking
             //StopwatchJITImpact.RunEvenTest();
 
             //GCImpact.RunEvenNumbersCountTest();
-            GCImpact.RunEvenNumbersCountTestWithGCCollect();
+            //GCImpact.RunEvenNumbersCountTestWithGCCollect();
 
-            //BenchmarkRunner.Run<CollectionsBenchmarks>();            
+            //BenchmarkRunner.Run<Md5VsSha256>();
+
+            BenchmarkRunner.Run<MultipleContainsWithoutCollectionCreationBenchmarks>();            
+            //BenchmarkRunner.Run<MultipleContainsBenchmarks>();            
             //BenchmarkRunner.Run<CountBenchmarks>();       
+
         }
     }
 }
