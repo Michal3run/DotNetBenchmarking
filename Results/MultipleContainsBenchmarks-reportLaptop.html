@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>DotNetCoreBenchmarking.Benchmarks.MultipleContainsBenchmarks-20201105-232919</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.1139 (1909/November2018Update/19H2)
+Intel Core i5-7200U CPU 2.50GHz (Kaby Lake), 1 CPU, 4 logical and 2 physical cores
+.NET Core SDK=3.1.401
+  [Host]     : .NET Core 3.1.7 (CoreCLR 4.700.20.36602, CoreFX 4.700.20.37001), X64 RyuJIT
+  DefaultJob : .NET Core 3.1.7 (CoreCLR 4.700.20.36602, CoreFX 4.700.20.37001), X64 RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>        Method</th><th>_collectionSize</th><th>     Mean</th><th>  Error</th><th>   StdDev</th><th>   Median</th><th>Ratio</th><th>RatioSD</th><th>Rank</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>ArraySimpleBenchmark</td><td>1</td><td>167.0 ns</td><td>3.34 ns</td><td>5.68 ns</td><td>165.7 ns</td><td>0.82</td><td>0.12</td><td>1</td><td>0.0713</td><td>-</td><td>-</td><td>112 B</td>
+</tr><tr><td>ListBenchmark</td><td>1</td><td>206.3 ns</td><td>8.03 ns</td><td>23.54 ns</td><td>210.3 ns</td><td>1.00</td><td>0.00</td><td>2</td><td>0.1478</td><td>-</td><td>-</td><td>232 B</td>
+</tr><tr><td>ArrayBenchmark</td><td>1</td><td>237.4 ns</td><td>7.20 ns</td><td>20.54 ns</td><td>242.0 ns</td><td>1.17</td><td>0.20</td><td>3</td><td>0.1273</td><td>-</td><td>-</td><td>200 B</td>
+</tr><tr><td>HashsetBenchmark</td><td>1</td><td>371.6 ns</td><td>6.22 ns</td><td>4.85 ns</td><td>372.7 ns</td><td>1.72</td><td>0.17</td><td>4</td><td>0.2141</td><td>-</td><td>-</td><td>336 B</td>
+</tr><tr><td>DictionaryBenchmark</td><td>1</td><td>378.0 ns</td><td>6.66 ns</td><td>6.23 ns</td><td>378.3 ns</td><td>1.76</td><td>0.16</td><td>4</td><td>0.2241</td><td>-</td><td>-</td><td>352 B</td>
+</tr><tr><td>LookupBenchmark</td><td>1</td><td>388.0 ns</td><td>6.90 ns</td><td>6.11 ns</td><td>387.0 ns</td><td>1.80</td><td>0.19</td><td>5</td><td>0.2446</td><td>-</td><td>-</td><td>384 B</td>
+</tr><tr><td>ListBenchmark</td><td>100</td><td>5,943.6 ns</td><td>118.75 ns</td><td>198.40 ns</td><td>5,997.5 ns</td><td>1.00</td><td>0.00</td><td>1</td><td>0.3967</td><td>-</td><td>-</td><td>624 B</td>
+</tr><tr><td>ArraySimpleBenchmark</td><td>100</td><td>5,974.2 ns</td><td>117.33 ns</td><td>223.23 ns</td><td>5,961.9 ns</td><td>1.01</td><td>0.05</td><td>1</td><td>0.3204</td><td>-</td><td>-</td><td>504 B</td>
+</tr><tr><td>ArrayBenchmark</td><td>100</td><td>9,616.9 ns</td><td>171.39 ns</td><td>160.32 ns</td><td>9,612.3 ns</td><td>1.63</td><td>0.08</td><td>2</td><td>0.3662</td><td>-</td><td>-</td><td>592 B</td>
+</tr><tr><td>DictionaryBenchmark</td><td>100</td><td>10,892.0 ns</td><td>305.65 ns</td><td>876.96 ns</td><td>11,104.3 ns</td><td>1.79</td><td>0.21</td><td>3</td><td>4.8065</td><td>-</td><td>-</td><td>7552 B</td>
+</tr><tr><td>HashsetBenchmark</td><td>100</td><td>11,956.4 ns</td><td>199.15 ns</td><td>186.29 ns</td><td>12,008.9 ns</td><td>2.03</td><td>0.11</td><td>4</td><td>3.9215</td><td>-</td><td>-</td><td>6168 B</td>
+</tr><tr><td>LookupBenchmark</td><td>100</td><td>17,897.9 ns</td><td>356.92 ns</td><td>381.90 ns</td><td>17,883.3 ns</td><td>3.02</td><td>0.15</td><td>5</td><td>7.0496</td><td>-</td><td>-</td><td>11080 B</td>
+</tr><tr><td>HashsetBenchmark</td><td>10000</td><td>1,209,235.4 ns</td><td>24,157.37 ns</td><td>39,691.25 ns</td><td>1,213,718.0 ns</td><td>0.04</td><td>0.00</td><td>1</td><td>189.4531</td><td>94.7266</td><td>94.7266</td><td>538792 B</td>
+</tr><tr><td>DictionaryBenchmark</td><td>10000</td><td>1,274,953.1 ns</td><td>38,281.65 ns</td><td>112,273.46 ns</td><td>1,303,792.3 ns</td><td>0.04</td><td>0.01</td><td>2</td><td>185.5469</td><td>123.0469</td><td>123.0469</td><td>673224 B</td>
+</tr><tr><td>LookupBenchmark</td><td>10000</td><td>4,430,320.7 ns</td><td>88,011.93 ns</td><td>200,447.70 ns</td><td>4,441,216.0 ns</td><td>0.15</td><td>0.01</td><td>3</td><td>187.5000</td><td>85.9375</td><td>39.0625</td><td>1142488 B</td>
+</tr><tr><td>ArraySimpleBenchmark</td><td>10000</td><td>29,138,236.8 ns</td><td>633,574.18 ns</td><td>1,868,107.77 ns</td><td>29,631,995.3 ns</td><td>0.98</td><td>0.09</td><td>4</td><td>-</td><td>-</td><td>-</td><td>40104 B</td>
+</tr><tr><td>ListBenchmark</td><td>10000</td><td>29,663,961.0 ns</td><td>587,872.22 ns</td><td>1,464,005.83 ns</td><td>30,027,687.5 ns</td><td>1.00</td><td>0.00</td><td>4</td><td>-</td><td>-</td><td>-</td><td>40224 B</td>
+</tr><tr><td>ArrayBenchmark</td><td>10000</td><td>30,580,424.7 ns</td><td>604,724.89 ns</td><td>786,313.17 ns</td><td>30,740,665.6 ns</td><td>1.03</td><td>0.07</td><td>5</td><td>-</td><td>-</td><td>-</td><td>40192 B</td>
+</tr></tbody></table>
+</body>
+</html>
