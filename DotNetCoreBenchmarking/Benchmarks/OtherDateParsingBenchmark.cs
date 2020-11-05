@@ -28,6 +28,10 @@ namespace DotNetCoreBenchmarking.Benchmarks
 
 
 
+
+
+
+
         [Benchmark]
         public int GetYearFromSubstring()
         {

@@ -42,6 +42,8 @@ namespace DotNetCoreBenchmarking
             //BenchmarkRunner.Run<Md5VsSha256>();
 
 
+            BenchmarkRunner.Run<AnyBenchmarks>();
+            
 
 
 
