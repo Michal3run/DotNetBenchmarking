@@ -12,7 +12,7 @@ namespace DotNetCoreBenchmarking.Benchmarks
     public class MultipleContainsWithoutCollectionCreationBenchmarks
     {
         [Params(1, 100, 10000)]
-        public int _collectionSize;
+        public int CollectionSize;
 
         private IEnumerable<int> _numbersToCheck;
 
@@ -36,33 +36,43 @@ namespace DotNetCoreBenchmarking.Benchmarks
                 
 
         [Benchmark(Baseline = true)]
-        public void ListBenchmark()
-        {            
-            TestCollection(number => _list.Contains(number));
-        }
-
-        [Benchmark]
-        public void ArrayBenchmark()
-        {            
-            TestCollection(number => _array.Contains(number));
-        }
-
-        [Benchmark]
-        public void HashsetBenchmark()
-        {           
-            TestCollection(number => _hashset.Contains(number));
-        }
-
-        [Benchmark]
-        public void DictionaryBenchmark()
+        public bool ListBenchmark()
         {
-            TestCollection(number => _dictionary.ContainsKey(number));
+            bool result = default;
+            TestCollection(number => result ^= _list.Contains(number));
+            return result;
         }
 
         [Benchmark]
-        public void LookupBenchmark()
+        public bool ArrayBenchmark()
         {
+            bool result = default;
+            TestCollection(number => result ^= _array.Contains(number));
+            return result;
+        }
+
+        [Benchmark]
+        public bool HashsetBenchmark()
+        {
+            bool result = default;
+            TestCollection(number => result ^= _hashset.Contains(number));
+            return result;
+        }
+
+        [Benchmark]
+        public bool DictionaryBenchmark()
+        {
+            bool result = default;
+            TestCollection(number => result ^= _dictionary.ContainsKey(number));
+            return result;
+        }
+
+        [Benchmark]
+        public bool LookupBenchmark()
+        {
+            bool result = default;
             TestCollection(number => _lookup.Contains(number));
+            return result;
         }
 
         private void TestCollection(Func<int, bool> contains)
@@ -73,6 +83,6 @@ namespace DotNetCoreBenchmarking.Benchmarks
             }
         }
 
-        private IEnumerable<int> GetNumbers() => Enumerable.Range(0, _collectionSize);
+        private IEnumerable<int> GetNumbers() => Enumerable.Range(0, CollectionSize);
     }        
 }
