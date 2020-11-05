@@ -9,16 +9,39 @@ namespace DotNetCoreBenchmarking
     {
         static void Main(string[] args)
         {
-            //SimpleStopwatch.CountLoopTest();            
+            SimpleStopwatch.CountLoopTest();
+
+
+
+
+
+
 
             //StopwatchJITImpact.RunCountTest();
             //StopwatchJITImpact.RunEvenTest();
 
+
+
+
+
+
+
             //GCImpact.RunEvenNumbersCountTest();
-            GCImpact.RunEvenNumbersCountTestWithGCCollect();
+            //GCImpact.RunEvenNumbersCountTestWithGCCollect();
+
+
+
+
+
+
 
             //BenchmarkRunner.Run<CollectionsBenchmarks>();            
             //BenchmarkRunner.Run<CountBenchmarks>();       
+
+
+            //BenchmarkRunner.Run<SimpleDateParsingBenchmark>();
+            BenchmarkRunner.Run<OtherDateParsingBenchmark>();
+            //new OtherDateParsingBenchmark().GetYearFromSpanWithManualConversion();
         }
     }
 }
