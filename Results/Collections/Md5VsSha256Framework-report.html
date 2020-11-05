@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>FrameworkVsCore.Md5VsSha256-20201104-210730</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.1139 (1903/May2019Update/19H1)
+Intel Core i5-6500 CPU 3.20GHz (Skylake), 1 CPU, 4 logical and 4 physical cores
+  [Host]     : .NET Framework 4.8 (4.8.4250.0), X86 LegacyJIT
+  .NET 4.7.2 : .NET Framework 4.8 (4.8.4250.0), X86 LegacyJIT
+  RyuJitX64  : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
+</code></pre>
+<pre><code>Runtime=.NET 4.7.2  
+</code></pre>
+
+<table>
+<thead><tr><th>Method</th><th> Job</th><th>Jit</th><th>Platform</th><th>N</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>Sha256</td><td>.NET 4.7.2</td><td>LegacyJit</td><td>X86</td><td>1000</td><td>11.696 &mu;s</td><td>0.0500 &mu;s</td><td>0.0468 &mu;s</td><td>0.0305</td><td>-</td><td>-</td><td>124 B</td>
+</tr><tr><td>Md5</td><td>.NET 4.7.2</td><td>LegacyJit</td><td>X86</td><td>1000</td><td>8.286 &mu;s</td><td>0.0421 &mu;s</td><td>0.0394 &mu;s</td><td>0.0153</td><td>-</td><td>-</td><td>76 B</td>
+</tr><tr><td>Sha256</td><td>RyuJitX64</td><td>RyuJit</td><td>X64</td><td>1000</td><td>9.278 &mu;s</td><td>0.0129 &mu;s</td><td>0.0107 &mu;s</td><td>0.0458</td><td>-</td><td>-</td><td>161 B</td>
+</tr><tr><td>Md5</td><td>RyuJitX64</td><td>RyuJit</td><td>X64</td><td>1000</td><td>7.494 &mu;s</td><td>0.0224 &mu;s</td><td>0.0198 &mu;s</td><td>0.0305</td><td>-</td><td>-</td><td>112 B</td>
+</tr><tr><td>Sha256</td><td>.NET 4.7.2</td><td>LegacyJit</td><td>X86</td><td>10000</td><td>111.135 &mu;s</td><td>0.2743 &mu;s</td><td>0.2566 &mu;s</td><td>-</td><td>-</td><td>-</td><td>149 B</td>
+</tr><tr><td>Md5</td><td>.NET 4.7.2</td><td>LegacyJit</td><td>X86</td><td>10000</td><td>26.502 &mu;s</td><td>0.1061 &mu;s</td><td>0.0828 &mu;s</td><td>-</td><td>-</td><td>-</td><td>76 B</td>
+</tr><tr><td>Sha256</td><td>RyuJitX64</td><td>RyuJit</td><td>X64</td><td>10000</td><td>88.110 &mu;s</td><td>0.4903 &mu;s</td><td>0.4347 &mu;s</td><td>-</td><td>-</td><td>-</td><td>185 B</td>
+</tr><tr><td>Md5</td><td>RyuJitX64</td><td>RyuJit</td><td>X64</td><td>10000</td><td>26.942 &mu;s</td><td>0.2971 &mu;s</td><td>0.2779 &mu;s</td><td>0.0305</td><td>-</td><td>-</td><td>113 B</td>
+</tr></tbody></table>
+</body>
+</html>

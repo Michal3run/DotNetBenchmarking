@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>DotNetCoreBenchmarking.Benchmarks.CollectionsBenchmarks-20201104-213915</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.1139 (1903/May2019Update/19H1)
+Intel Core i5-6500 CPU 3.20GHz (Skylake), 1 CPU, 4 logical and 4 physical cores
+.NET Core SDK=3.1.403
+  [Host]     : .NET Core 3.1.9 (CoreCLR 4.700.20.47201, CoreFX 4.700.20.47203), X64 RyuJIT
+  DefaultJob : .NET Core 3.1.9 (CoreCLR 4.700.20.47201, CoreFX 4.700.20.47203), X64 RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>        Method</th><th>N</th><th>      Mean</th><th>  Error</th><th> StdDev</th><th>       Min</th><th>        Q1</th><th>        Q3</th><th>       Max</th><th>Ratio</th><th>RatioSD</th><th>Rank</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>ArraySimpleBenchmark</td><td>1</td><td>67.39 ns</td><td>0.604 ns</td><td>0.565 ns</td><td>66.77 ns</td><td>66.89 ns</td><td>67.88 ns</td><td>68.31 ns</td><td>0.73</td><td>0.01</td><td>1</td><td>0.0356</td><td>-</td><td>-</td><td>112 B</td>
+</tr><tr><td>ListBenchmark</td><td>1</td><td>92.02 ns</td><td>0.696 ns</td><td>0.651 ns</td><td>91.11 ns</td><td>91.36 ns</td><td>92.39 ns</td><td>93.06 ns</td><td>1.00</td><td>0.00</td><td>2</td><td>0.0739</td><td>-</td><td>-</td><td>232 B</td>
+</tr><tr><td>ArrayBenchmark</td><td>1</td><td>103.46 ns</td><td>1.097 ns</td><td>1.026 ns</td><td>101.88 ns</td><td>102.92 ns</td><td>104.14 ns</td><td>105.46 ns</td><td>1.12</td><td>0.01</td><td>3</td><td>0.0637</td><td>-</td><td>-</td><td>200 B</td>
+</tr><tr><td>DictionaryBenchmark</td><td>1</td><td>145.32 ns</td><td>1.871 ns</td><td>1.750 ns</td><td>142.75 ns</td><td>144.13 ns</td><td>146.59 ns</td><td>148.35 ns</td><td>1.58</td><td>0.02</td><td>4</td><td>0.1121</td><td>-</td><td>-</td><td>352 B</td>
+</tr><tr><td>HashsetBenchmark</td><td>1</td><td>149.86 ns</td><td>1.767 ns</td><td>1.566 ns</td><td>147.64 ns</td><td>148.58 ns</td><td>150.40 ns</td><td>153.07 ns</td><td>1.63</td><td>0.02</td><td>5</td><td>0.1070</td><td>-</td><td>-</td><td>336 B</td>
+</tr><tr><td>LookupBenchmark</td><td>1</td><td>155.19 ns</td><td>1.624 ns</td><td>1.440 ns</td><td>152.86 ns</td><td>154.16 ns</td><td>155.81 ns</td><td>158.13 ns</td><td>1.69</td><td>0.02</td><td>6</td><td>0.1223</td><td>-</td><td>-</td><td>384 B</td>
+</tr><tr><td>ArraySimpleBenchmark</td><td>100</td><td>2,435.67 ns</td><td>20.164 ns</td><td>18.861 ns</td><td>2,411.73 ns</td><td>2,421.11 ns</td><td>2,446.96 ns</td><td>2,477.75 ns</td><td>0.96</td><td>0.01</td><td>1</td><td>0.1602</td><td>-</td><td>-</td><td>504 B</td>
+</tr><tr><td>ListBenchmark</td><td>100</td><td>2,533.77 ns</td><td>13.324 ns</td><td>11.812 ns</td><td>2,513.35 ns</td><td>2,526.86 ns</td><td>2,539.43 ns</td><td>2,556.51 ns</td><td>1.00</td><td>0.00</td><td>2</td><td>0.1984</td><td>-</td><td>-</td><td>624 B</td>
+</tr><tr><td>ArrayBenchmark</td><td>100</td><td>4,158.87 ns</td><td>24.922 ns</td><td>22.093 ns</td><td>4,111.89 ns</td><td>4,149.51 ns</td><td>4,170.66 ns</td><td>4,188.68 ns</td><td>1.64</td><td>0.01</td><td>3</td><td>0.1831</td><td>-</td><td>-</td><td>592 B</td>
+</tr><tr><td>DictionaryBenchmark</td><td>100</td><td>4,331.18 ns</td><td>50.983 ns</td><td>47.690 ns</td><td>4,241.02 ns</td><td>4,302.53 ns</td><td>4,354.97 ns</td><td>4,420.89 ns</td><td>1.71</td><td>0.02</td><td>4</td><td>2.4033</td><td>-</td><td>-</td><td>7552 B</td>
+</tr><tr><td>HashsetBenchmark</td><td>100</td><td>4,576.96 ns</td><td>54.683 ns</td><td>51.151 ns</td><td>4,516.50 ns</td><td>4,530.10 ns</td><td>4,601.09 ns</td><td>4,670.00 ns</td><td>1.81</td><td>0.02</td><td>5</td><td>1.9608</td><td>-</td><td>-</td><td>6168 B</td>
+</tr><tr><td>LookupBenchmark</td><td>100</td><td>7,218.13 ns</td><td>99.028 ns</td><td>92.631 ns</td><td>7,097.46 ns</td><td>7,152.56 ns</td><td>7,275.78 ns</td><td>7,404.13 ns</td><td>2.85</td><td>0.04</td><td>6</td><td>3.5324</td><td>-</td><td>-</td><td>11080 B</td>
+</tr><tr><td>HashsetBenchmark</td><td>10000</td><td>478,026.43 ns</td><td>4,244.844 ns</td><td>3,970.630 ns</td><td>471,768.07 ns</td><td>475,651.07 ns</td><td>479,402.47 ns</td><td>484,592.09 ns</td><td>0.04</td><td>0.00</td><td>1</td><td>95.2148</td><td>95.2148</td><td>95.2148</td><td>538793 B</td>
+</tr><tr><td>DictionaryBenchmark</td><td>10000</td><td>549,859.99 ns</td><td>5,380.239 ns</td><td>5,032.679 ns</td><td>544,550.10 ns</td><td>545,386.91 ns</td><td>553,492.87 ns</td><td>558,578.81 ns</td><td>0.04</td><td>0.00</td><td>2</td><td>124.0234</td><td>124.0234</td><td>124.0234</td><td>673225 B</td>
+</tr><tr><td>LookupBenchmark</td><td>10000</td><td>2,049,498.93 ns</td><td>7,747.598 ns</td><td>7,247.108 ns</td><td>2,038,173.05 ns</td><td>2,045,898.63 ns</td><td>2,054,381.64 ns</td><td>2,064,052.73 ns</td><td>0.16</td><td>0.00</td><td>3</td><td>195.3125</td><td>105.4688</td><td>39.0625</td><td>1142512 B</td>
+</tr><tr><td>ArraySimpleBenchmark</td><td>10000</td><td>12,683,306.58 ns</td><td>62,046.184 ns</td><td>55,002.326 ns</td><td>12,574,660.94 ns</td><td>12,645,721.88 ns</td><td>12,721,012.11 ns</td><td>12,760,781.25 ns</td><td>1.00</td><td>0.01</td><td>4</td><td>-</td><td>-</td><td>-</td><td>40125 B</td>
+</tr><tr><td>ListBenchmark</td><td>10000</td><td>12,706,188.85 ns</td><td>90,285.855 ns</td><td>84,453.445 ns</td><td>12,580,418.75 ns</td><td>12,636,249.22 ns</td><td>12,742,736.72 ns</td><td>12,861,075.00 ns</td><td>1.00</td><td>0.00</td><td>4</td><td>-</td><td>-</td><td>-</td><td>40233 B</td>
+</tr><tr><td>ArrayBenchmark</td><td>10000</td><td>12,914,748.44 ns</td><td>75,287.353 ns</td><td>70,423.837 ns</td><td>12,802,154.69 ns</td><td>12,870,253.91 ns</td><td>12,984,342.19 ns</td><td>13,012,714.06 ns</td><td>1.02</td><td>0.01</td><td>5</td><td>-</td><td>-</td><td>-</td><td>40213 B</td>
+</tr></tbody></table>
+</body>
+</html>
