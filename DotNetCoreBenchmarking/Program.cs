@@ -9,19 +9,47 @@ namespace DotNetCoreBenchmarking
     {
         static void Main(string[] args)
         {
-            //SimpleStopwatch.CountLoopTest();            
+            SimpleStopwatch.CountLoopTest();
+
+
+
+
+
+
 
             //StopwatchJITImpact.RunCountTest();
             //StopwatchJITImpact.RunEvenTest();
 
+
+
+
+
+
+
             //GCImpact.RunEvenNumbersCountTest();
             //GCImpact.RunEvenNumbersCountTestWithGCCollect();
 
+
+
+
+            //BenchmarkRunner.Run<SimpleDateParsingBenchmark>();
+            //BenchmarkRunner.Run<OtherDateParsingBenchmark>();
+
+
+
+
+
             //BenchmarkRunner.Run<Md5VsSha256>();
 
-            BenchmarkRunner.Run<MultipleContainsWithoutCollectionCreationBenchmarks>();            
+
+
+
+
+
+
+            //BenchmarkRunner.Run<MultipleContainsWithoutCollectionCreationBenchmarks>();            
             //BenchmarkRunner.Run<MultipleContainsBenchmarks>();            
-            //BenchmarkRunner.Run<CountBenchmarks>();       
+            //BenchmarkRunner.Run<CountBenchmarks>();                  
 
         }
     }
