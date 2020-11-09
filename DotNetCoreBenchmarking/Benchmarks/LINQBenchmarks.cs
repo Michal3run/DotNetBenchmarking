@@ -10,7 +10,8 @@ namespace DotNetCoreBenchmarking.Benchmarks
     [RankColumn]
     public class LINQBenchmarks
     {
-        public int RankingRowsCount = 200;
+        [Params(200, 4000)]
+        public int RankingRowsCount;
 
         [Params(1, 19)]
         public int RealRankingYears;
@@ -29,16 +30,7 @@ namespace DotNetCoreBenchmarking.Benchmarks
             _periods = GetPeriods();
             _rankingRows = GetRankingRows();
         }
-
-        [Benchmark]
-        public List<PeriodDto> LINQTestWithLotOfTemporaryArrayResultsNoDistinct()
-        {
-            var periodData = _rankingRows.SelectMany(r => r.RowPeriods).ToArray();
-            var rowPeriodIds = periodData.Select(p => p.PeriodId).ToArray();
-
-            return _periods.Where(p => rowPeriodIds.Contains(p.Id)).ToList();
-        }
-
+        
         [Benchmark]
         public List<PeriodDto> LINQTestWithLotOfTemporaryArrayResults()
         {
@@ -55,17 +47,6 @@ namespace DotNetCoreBenchmarking.Benchmarks
             var periodData = _rankingRows.SelectMany(r => r.RowPeriods).ToList();
             var rowPeriodIds = periodData.Select(p => p.PeriodId).ToList();
             var distinctRowPeriodIds = rowPeriodIds.Distinct().ToList();
-
-            return _periods.Where(p => distinctRowPeriodIds.Contains(p.Id)).ToList();
-        }
-        
-        [Benchmark]
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public List<PeriodDto> LINQTestWithLotOfTemporaryResultsDistinctInWhereNoInlining()
-        {
-            var periodData = _rankingRows.SelectMany(r => r.RowPeriods).ToList();
-            var rowPeriodIds = periodData.Select(p => p.PeriodId).ToList();
-            var distinctRowPeriodIds = rowPeriodIds.Distinct();
 
             return _periods.Where(p => distinctRowPeriodIds.Contains(p.Id)).ToList();
         }
@@ -94,8 +75,15 @@ namespace DotNetCoreBenchmarking.Benchmarks
         [Benchmark]
         public List<PeriodDto> LINQTestWithSomeTemporaryResultsAndHashset()
         {
-            var distinctRowPeriodIds = new HashSet<string>(_rankingRows.SelectMany(r => r.RowPeriods)
-                .Select(p => p.PeriodId));
+            var distinctRowPeriodIds = new HashSet<string>(_rankingRows.SelectMany(r => r.RowPeriods).Select(p => p.PeriodId));
+
+            return _periods.Where(p => distinctRowPeriodIds.Contains(p.Id)).ToList();
+        }
+
+        [Benchmark]
+        public List<PeriodDto> LINQTestWithSomeTemporaryResultsHashsetAndSelectInSelectMany()
+        {
+            var distinctRowPeriodIds = new HashSet<string>(_rankingRows.SelectMany(r => r.RowPeriods.Select(p => p.PeriodId)));
 
             return _periods.Where(p => distinctRowPeriodIds.Contains(p.Id)).ToList();
         }
@@ -103,11 +91,16 @@ namespace DotNetCoreBenchmarking.Benchmarks
         [Benchmark]
         public List<PeriodDto> LINQTestWithHashsetInWhere()
         {
-
             return _periods.Where(p => new HashSet<string>(_rankingRows.SelectMany(r => r.RowPeriods)
                 .Select(r => r.PeriodId)).Contains(p.Id)).ToList();
         }
 
+        [Benchmark]
+        public List<PeriodDto> LINQTestNoContainsManualAdding()
+        {
+            return _rankingRows.SelectMany(r => r.RowPeriods.Select(p => p.PeriodId)).Distinct()
+                .Select(periodId => _periods.FirstOrDefault(p => p.Id == periodId)).ToList();
+        }
 
         private List<PeriodDto> GetPeriods()
         {

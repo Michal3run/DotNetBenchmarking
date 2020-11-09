@@ -27,13 +27,14 @@ namespace DotNetCoreBenchmarking
 
             //BenchmarkRunner.Run<MultipleContainsWithoutCollectionCreationBenchmarks>();            
             //BenchmarkRunner.Run<MultipleContainsBenchmarks>();            
-            
+
             BenchmarkRunner.Run<LINQBenchmarks>();
 
             //var LBenchmark = new LINQBenchmarks();
-            //LBenchmark.RealRankingYears = 1;
+            //LBenchmark.RealRankingYears = 19;
+            //LBenchmark.RankingRowsCount = 200;
             //LBenchmark.Setup();
-            //LBenchmark.LINQTestWithLotOfTemporaryResultsDistinctInWhere();
+            //LBenchmark.LINQTestWithHashsetInWhere();
         }
     }
 }
