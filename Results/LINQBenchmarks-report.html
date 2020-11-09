@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>DotNetCoreBenchmarking.Benchmarks.LINQBenchmarks-20201109-221733</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19041.572 (2004/?/20H1)
+Intel Core i7-4700MQ CPU 2.40GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.1.403
+  [Host]     : .NET Core 3.1.9 (CoreCLR 4.700.20.47201, CoreFX 4.700.20.47203), X64 RyuJIT
+  DefaultJob : .NET Core 3.1.9 (CoreCLR 4.700.20.47201, CoreFX 4.700.20.47203), X64 RyuJIT
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>                                                Method</th><th>RankingRowsCount</th><th>RealRankingYears</th><th>  Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Rank</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>LINQTestWithLotOfTemporaryArrayResults</td><td>200</td><td>1</td><td>34.36 &mu;s</td><td>0.247 &mu;s</td><td>0.192 &mu;s</td><td>34.32 &mu;s</td><td>5</td><td>3.9673</td><td>-</td><td>-</td><td>12.19 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryListResults</td><td>200</td><td>1</td><td>18.47 &mu;s</td><td>0.145 &mu;s</td><td>0.128 &mu;s</td><td>18.48 &mu;s</td><td>1</td><td>2.1362</td><td>-</td><td>-</td><td>6.59 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryResultsDistinctInWhere</td><td>200</td><td>1</td><td>156.94 &mu;s</td><td>0.941 &mu;s</td><td>0.880 &mu;s</td><td>156.59 &mu;s</td><td>6</td><td>4.1504</td><td>-</td><td>-</td><td>12.91 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResults</td><td>200</td><td>1</td><td>20.04 &mu;s</td><td>0.393 &mu;s</td><td>0.386 &mu;s</td><td>19.95 &mu;s</td><td>2</td><td>2.7771</td><td>-</td><td>-</td><td>8.57 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResultsAndHashset</td><td>200</td><td>1</td><td>20.08 &mu;s</td><td>0.143 &mu;s</td><td>0.120 &mu;s</td><td>20.13 &mu;s</td><td>2</td><td>2.7161</td><td>-</td><td>-</td><td>8.38 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResultsHashsetAndSelectInSelectMany</td><td>200</td><td>1</td><td>31.21 &mu;s</td><td>0.240 &mu;s</td><td>0.225 &mu;s</td><td>31.16 &mu;s</td><td>4</td><td>4.6997</td><td>-</td><td>-</td><td>14.58 KB</td>
+</tr><tr><td>LINQTestWithHashsetInWhere</td><td>200</td><td>1</td><td>392.79 &mu;s</td><td>2.577 &mu;s</td><td>2.152 &mu;s</td><td>393.74 &mu;s</td><td>16</td><td>53.2227</td><td>-</td><td>-</td><td>163.03 KB</td>
+</tr><tr><td>LINQTestNoContainsManualAdding</td><td>200</td><td>1</td><td>30.25 &mu;s</td><td>0.257 &mu;s</td><td>0.228 &mu;s</td><td>30.24 &mu;s</td><td>3</td><td>4.7913</td><td>-</td><td>-</td><td>14.79 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryArrayResults</td><td>200</td><td>19</td><td>193.14 &mu;s</td><td>1.444 &mu;s</td><td>1.280 &mu;s</td><td>193.36 &mu;s</td><td>7</td><td>22.4609</td><td>-</td><td>-</td><td>70.09 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryListResults</td><td>200</td><td>19</td><td>206.72 &mu;s</td><td>0.960 &mu;s</td><td>0.802 &mu;s</td><td>207.06 &mu;s</td><td>8</td><td>35.1563</td><td>-</td><td>-</td><td>108.3 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryResultsDistinctInWhere</td><td>200</td><td>19</td><td>215.48 &mu;s</td><td>2.387 &mu;s</td><td>2.233 &mu;s</td><td>214.89 &mu;s</td><td>9</td><td>39.0625</td><td>-</td><td>-</td><td>121.23 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResults</td><td>200</td><td>19</td><td>219.09 &mu;s</td><td>1.168 &mu;s</td><td>1.092 &mu;s</td><td>218.90 &mu;s</td><td>10</td><td>3.1738</td><td>-</td><td>-</td><td>10.22 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResultsAndHashset</td><td>200</td><td>19</td><td>232.81 &mu;s</td><td>1.428 &mu;s</td><td>1.266 &mu;s</td><td>232.63 &mu;s</td><td>12</td><td>3.1738</td><td>-</td><td>-</td><td>10.23 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResultsHashsetAndSelectInSelectMany</td><td>200</td><td>19</td><td>228.59 &mu;s</td><td>1.316 &mu;s</td><td>1.167 &mu;s</td><td>228.95 &mu;s</td><td>11</td><td>4.3945</td><td>-</td><td>-</td><td>16.43 KB</td>
+</tr><tr><td>LINQTestWithHashsetInWhere</td><td>200</td><td>19</td><td>4,674.65 &mu;s</td><td>31.642 &mu;s</td><td>28.050 &mu;s</td><td>4,680.61 &mu;s</td><td>21</td><td>46.8750</td><td>-</td><td>-</td><td>190.42 KB</td>
+</tr><tr><td>LINQTestNoContainsManualAdding</td><td>200</td><td>19</td><td>236.94 &mu;s</td><td>1.657 &mu;s</td><td>1.469 &mu;s</td><td>236.92 &mu;s</td><td>13</td><td>5.8594</td><td>-</td><td>-</td><td>18.55 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryArrayResults</td><td>4000</td><td>1</td><td>645.89 &mu;s</td><td>5.537 &mu;s</td><td>4.908 &mu;s</td><td>643.87 &mu;s</td><td>19</td><td>60.5469</td><td>-</td><td>-</td><td>191.75 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryListResults</td><td>4000</td><td>1</td><td>338.46 &mu;s</td><td>3.829 &mu;s</td><td>3.197 &mu;s</td><td>338.03 &mu;s</td><td>14</td><td>30.7617</td><td>-</td><td>-</td><td>96.38 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryResultsDistinctInWhere</td><td>4000</td><td>1</td><td>3,127.14 &mu;s</td><td>23.409 &mu;s</td><td>21.897 &mu;s</td><td>3,128.20 &mu;s</td><td>20</td><td>27.3438</td><td>-</td><td>-</td><td>102.7 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResults</td><td>4000</td><td>1</td><td>378.03 &mu;s</td><td>2.113 &mu;s</td><td>1.976 &mu;s</td><td>377.85 &mu;s</td><td>15</td><td>50.2930</td><td>-</td><td>-</td><td>157.01 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResultsAndHashset</td><td>4000</td><td>1</td><td>391.88 &mu;s</td><td>3.115 &mu;s</td><td>2.761 &mu;s</td><td>391.20 &mu;s</td><td>16</td><td>50.7813</td><td>-</td><td>-</td><td>156.83 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResultsHashsetAndSelectInSelectMany</td><td>4000</td><td>1</td><td>618.83 &mu;s</td><td>4.427 &mu;s</td><td>3.924 &mu;s</td><td>618.81 &mu;s</td><td>18</td><td>91.7969</td><td>-</td><td>-</td><td>281.77 KB</td>
+</tr><tr><td>LINQTestWithHashsetInWhere</td><td>4000</td><td>1</td><td>7,849.46 &mu;s</td><td>47.169 &mu;s</td><td>44.122 &mu;s</td><td>7,865.09 &mu;s</td><td>23</td><td>1000.0000</td><td>-</td><td>-</td><td>3131.8 KB</td>
+</tr><tr><td>LINQTestNoContainsManualAdding</td><td>4000</td><td>1</td><td>592.99 &mu;s</td><td>3.736 &mu;s</td><td>3.312 &mu;s</td><td>592.21 &mu;s</td><td>17</td><td>91.7969</td><td>-</td><td>-</td><td>281.98 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryArrayResults</td><td>4000</td><td>19</td><td>4,604.14 &mu;s</td><td>87.321 &mu;s</td><td>81.680 &mu;s</td><td>4,572.36 &mu;s</td><td>21</td><td>234.3750</td><td>203.1250</td><td>195.3125</td><td>1319.69 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryListResults</td><td>4000</td><td>19</td><td>4,584.47 &mu;s</td><td>62.796 &mu;s</td><td>55.667 &mu;s</td><td>4,561.04 &mu;s</td><td>21</td><td>289.0625</td><td>250.0000</td><td>242.1875</td><td>1813.95 KB</td>
+</tr><tr><td>LINQTestWithLotOfTemporaryResultsDistinctInWhere</td><td>4000</td><td>19</td><td>4,707.03 &mu;s</td><td>34.935 &mu;s</td><td>30.969 &mu;s</td><td>4,707.01 &mu;s</td><td>21</td><td>289.0625</td><td>234.3750</td><td>234.3750</td><td>1826.81 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResults</td><td>4000</td><td>19</td><td>4,765.51 &mu;s</td><td>32.014 &mu;s</td><td>26.733 &mu;s</td><td>4,766.46 &mu;s</td><td>21</td><td>46.8750</td><td>-</td><td>-</td><td>158.66 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResultsAndHashset</td><td>4000</td><td>19</td><td>5,182.00 &mu;s</td><td>70.740 &mu;s</td><td>66.170 &mu;s</td><td>5,169.99 &mu;s</td><td>22</td><td>46.8750</td><td>-</td><td>-</td><td>158.72 KB</td>
+</tr><tr><td>LINQTestWithSomeTemporaryResultsHashsetAndSelectInSelectMany</td><td>4000</td><td>19</td><td>4,909.62 &mu;s</td><td>60.550 &mu;s</td><td>53.676 &mu;s</td><td>4,901.98 &mu;s</td><td>21</td><td>85.9375</td><td>-</td><td>-</td><td>283.62 KB</td>
+</tr><tr><td>LINQTestWithHashsetInWhere</td><td>4000</td><td>19</td><td>95,194.75 &mu;s</td><td>650.221 &mu;s</td><td>576.404 &mu;s</td><td>95,177.08 &mu;s</td><td>24</td><td>1000.0000</td><td>-</td><td>-</td><td>3159.36 KB</td>
+</tr><tr><td>LINQTestNoContainsManualAdding</td><td>4000</td><td>19</td><td>4,877.52 &mu;s</td><td>131.030 &mu;s</td><td>373.836 &mu;s</td><td>4,743.77 &mu;s</td><td>21</td><td>85.9375</td><td>-</td><td>-</td><td>285.73 KB</td>
+</tr></tbody></table>
+</body>
+</html>
