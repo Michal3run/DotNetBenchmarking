@@ -22,6 +22,7 @@ namespace DotNetCoreBenchmarking.StopwatchTesting
         private static void RunEvenNumbersCountTest(bool forceGC)
         {
             var ticksList = new List<long>(_testLaunchCount);
+            bool isSuccess = default;
 
             for (int i = 0; i < _testLaunchCount; i++)
             {
@@ -42,6 +43,8 @@ namespace DotNetCoreBenchmarking.StopwatchTesting
                 {
                     ticksList.Add(elapsedTicks);
                 }
+
+                isSuccess ^= evenNumberCount > 0;
             }
 
             Console.WriteLine($"ElapsedTicks with{(forceGC ? "" : "out")} GC.Collect(). " +
@@ -53,7 +56,6 @@ namespace DotNetCoreBenchmarking.StopwatchTesting
             var numbers = Enumerable.Range(0, 10000).Select(GetNumber).ToArray();
             var evenNumbers = numbers.Where(n => n.IsEven).ToArray();
             var evenNumbersCount = evenNumbers.Length;
-
             return evenNumbersCount;
 
             Number GetNumber(int i) => new Number(i);

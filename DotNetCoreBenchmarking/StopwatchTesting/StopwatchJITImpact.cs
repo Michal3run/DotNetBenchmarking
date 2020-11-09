@@ -36,17 +36,18 @@ namespace DotNetCoreBenchmarking.StopwatchTesting
 
         private static long IsEvenLoopTest()
         {
+            bool isEven = default;
             var stopwatch = Stopwatch.StartNew();            
             for (int i = 0; i < 100; i++)
             {
-                IsEven(i);
+                isEven ^= IsEven(i);
             }
             return stopwatch.ElapsedTicks;
         }
 
-        private static long IsEven(int number)
+        private static bool IsEven(int number)
         {
-            return number % 2;
+            return number % 2 == 0;
         }
     }
 }
